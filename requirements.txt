@@ -1,0 +1,7 @@
+# Minimal runtime dependency for the orchestrated stub pipeline.
+langgraph
+
+# Optional real integrations for Phase 8 are intentionally not required here.
+# Examples:
+# - pyttsx3  -> optional local text-to-speech backend
+# - transformers -> optional local sentiment or request-understanding model

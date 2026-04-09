@@ -1,0 +1,18 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local data produced by future phases of the project.
+data/artifacts/*
+!data/artifacts/.gitkeep
+data/cache/*
+!data/cache/.gitkeep
+data/*.db
+
+# Environment files
+.env
+.env.*

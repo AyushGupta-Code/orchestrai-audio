@@ -1,0 +1,40 @@
+{
+  "request_type_templates": {
+    "music_session": {
+      "default_style": "session",
+      "default_pacing": "flowing",
+      "notes": [
+        "Template retrieval: prefer smooth transitions between long-form music blocks."
+      ]
+    },
+    "pomodoro_session": {
+      "default_style": "focus",
+      "default_pacing": "steady",
+      "default_output_strategy": "template_guided_focus_mix",
+      "notes": [
+        "Template retrieval: keep break cues short and clearly separated from work blocks."
+      ]
+    },
+    "audiobook": {
+      "default_style": "storytelling",
+      "default_pacing": "measured",
+      "notes": [
+        "Template retrieval: narration should remain clearly readable above background music."
+      ]
+    },
+    "ambient_session": {
+      "default_style": "soundscape",
+      "default_pacing": "slow",
+      "notes": [
+        "Template retrieval: favor continuity over sharp transitions."
+      ]
+    },
+    "custom_timeline": {
+      "default_style": "guided",
+      "notes": [
+        "Template retrieval: preserve distinct transitions between timeline sections."
+      ]
+    }
+  }
+}
+

@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  demo:
+    build: .
+    volumes:
+      - ./data:/app/data
+    environment:
+      # Keep advanced features optional by default.
+      ORCH_AUDIO_ENABLE_REQUEST_CACHE: "0"
+      ORCH_AUDIO_ENABLE_TEMPLATE_RETRIEVAL: "0"
+    command: >
+      python scripts/run_demo.py
+      "Generate 2 hours of calm rain ambience for studying"
+
