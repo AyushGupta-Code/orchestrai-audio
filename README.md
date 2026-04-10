@@ -133,10 +133,6 @@ Notes:
 - WAV generation does not require downloading a music model when using the
   built-in `wave_tone` backend.
 - Optional voice cues can use `pyttsx3` without downloading a neural model.
-- `wave_tone` is the default music backend, so music/ambient segments generate
-  local WAV files out of the box.
-- Narration segments now fall back to a built-in WAV cue generator when local
-  TTS is not enabled, so pomodoro break cues still produce `.wav` artifacts.
 
 Optional environment flags:
 
@@ -193,9 +189,9 @@ The demo prints:
 - the final artifact path
 - the list of segment artifact paths
 
-When at least one segment artifact is WAV, the final artifact is
-`final_mix.wav` (concatenated from available segment WAV files). If no segment
-WAV files exist, the system falls back to `final_mix.txt`.
+When real WAV backends are enabled and at least one segment is WAV, the final
+artifact is `final_mix.wav` (concatenated from available segment WAV files). If
+no segment WAV files exist, the system falls back to `final_mix.txt`.
 
 ## Sample Requests
 
