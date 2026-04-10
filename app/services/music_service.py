@@ -1,7 +1,7 @@
 """Music and ambient generation helpers.
 
 Phase 8 keeps the stub text output path, but can also generate simple local
-WAV files when the optional real-music flag is enabled. The real path is still
+WAV files through the built-in `wave_tone` backend. The real path is still
 deliberately minimal: it synthesizes plain tones with the standard library.
 """
 
@@ -12,7 +12,6 @@ import math
 import struct
 import wave
 
-from app.core.config import ENABLE_REAL_MUSIC
 from app.models.schemas import BackendRoutingDecision, SegmentPlan
 from app.storage.artifacts import write_artifact_bytes, write_artifact_text
 
@@ -75,7 +74,7 @@ def create_ambient_artifact(
 
 def should_use_real_music_backend(routing: BackendRoutingDecision) -> bool:
     """Return True when the selected backend is the simple local WAV backend."""
-    return ENABLE_REAL_MUSIC and routing.music_backend_name == "wave_tone_backend"
+    return routing.music_backend_name == "wave_tone_backend"
 
 
 def create_real_music_wav(
