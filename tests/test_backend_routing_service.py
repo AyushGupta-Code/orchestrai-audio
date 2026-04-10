@@ -25,10 +25,10 @@ class BackendRoutingTests(unittest.TestCase):
         routing = choose_backends(plan)
 
         self.assertIsNotNone(routing.music_backend_name)
+        self.assertEqual(routing.music_backend_name, "wave_tone_backend")
         self.assertIsNone(routing.voice_backend_name)
         self.assertEqual(routing.stitching_strategy, "ambient_layered_stitch")
 
 
 if __name__ == "__main__":
     unittest.main()
-
