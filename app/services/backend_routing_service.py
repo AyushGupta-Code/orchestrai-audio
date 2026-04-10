@@ -9,12 +9,7 @@ from __future__ import annotations
 
 import importlib.util
 
-from app.core.config import (
-    ENABLE_REAL_MUSIC,
-    ENABLE_REAL_VOICE,
-    MUSIC_BACKEND_PREFERENCE,
-    VOICE_BACKEND_PREFERENCE,
-)
+from app.core.config import ENABLE_REAL_VOICE, MUSIC_BACKEND_PREFERENCE, VOICE_BACKEND_PREFERENCE
 from app.models.schemas import AudioRequestPlan, BackendRoutingDecision
 
 
@@ -84,11 +79,15 @@ def choose_backends(plan: AudioRequestPlan) -> BackendRoutingDecision:
 
 
 def choose_music_backend_name(plan: AudioRequestPlan) -> str | None:
-    """Choose a music backend name while preserving safe stub fallback."""
+    """Choose a music backend name.
+
+    The built-in `wave_tone` backend uses only the Python standard library and
+    can run by default without extra model downloads.
+    """
     if not plan.needs_music and plan.request_type != "ambient_session":
         return None
 
-    if ENABLE_REAL_MUSIC and MUSIC_BACKEND_PREFERENCE == "wave_tone":
+    if MUSIC_BACKEND_PREFERENCE == "wave_tone":
         return "wave_tone_backend"
 
     if plan.request_type == "ambient_session":

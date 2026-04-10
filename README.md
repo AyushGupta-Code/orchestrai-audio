@@ -106,6 +106,36 @@ python3 -m pip install pyttsx3
 python3 -m pip install transformers
 ```
 
+### Open-Source Small Models To Download (Optional)
+
+If you want richer local behavior than pure rule-based parsing, download a small
+sentiment model and point `ORCH_AUDIO_REQUEST_SENTIMENT_MODEL` at it.
+
+Recommended small open-source model:
+
+- `distilbert-base-uncased-finetuned-sst-2-english`
+
+Example local download:
+
+```bash
+python3 -c "from huggingface_hub import snapshot_download; snapshot_download(repo_id='distilbert-base-uncased-finetuned-sst-2-english', local_dir='$HOME/models/distilbert-sst2')"
+```
+
+Then export:
+
+```bash
+export ORCH_AUDIO_ENABLE_REAL_REQUEST_UNDERSTANDING=1
+export ORCH_AUDIO_REQUEST_SENTIMENT_MODEL=$HOME/models/distilbert-sst2
+```
+
+Notes:
+
+- WAV generation does not require downloading a music model when using the
+  built-in `wave_tone` backend.
+- Optional voice cues can use `pyttsx3` without downloading a neural model.
+- `wave_tone` is the default music backend, so music/ambient segments generate
+  local WAV files out of the box.
+
 Optional environment flags:
 
 ```bash
@@ -113,7 +143,6 @@ export ORCH_AUDIO_ENABLE_REAL_REQUEST_UNDERSTANDING=1
 export ORCH_AUDIO_REQUEST_SENTIMENT_MODEL=/path/to/local/model
 export ORCH_AUDIO_ENABLE_REAL_VOICE=1
 export ORCH_AUDIO_VOICE_BACKEND=pyttsx3
-export ORCH_AUDIO_ENABLE_REAL_MUSIC=1
 export ORCH_AUDIO_MUSIC_BACKEND=wave_tone
 ```
 
@@ -161,6 +190,10 @@ The demo prints:
 - the saved `run_id`
 - the final artifact path
 - the list of segment artifact paths
+
+When at least one segment artifact is WAV, the final artifact is
+`final_mix.wav` (concatenated from available segment WAV files). If no segment
+WAV files exist, the system falls back to `final_mix.txt`.
 
 ## Sample Requests
 
